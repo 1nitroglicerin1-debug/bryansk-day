@@ -67,8 +67,9 @@
       display: inline-block; padding: 6px 14px; border-radius: 999px; font-weight: 800;
       font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em;
     }
-    .slide-title { margin: 6px 0 0; font-size: 2.05rem; font-weight: 900; line-height: 1.15; color: #0f172a; }
-    .slide-sub { margin: 4px 0 0; font-size: 1.02rem; font-weight: 600; color: #334155; }
+    .slide-header > div:first-child { flex: 1; min-width: 0; }
+    .slide-title { margin: 6px 0 0; font-size: 1.82rem; font-weight: 900; line-height: 1.15; color: #0f172a; }
+    .slide-sub { margin: 4px 0 0; font-size: 1.0rem; font-weight: 600; color: #334155; }
 
     .slide-body {
       flex: 1; display: grid; grid-template-columns: 1.04fr 0.96fr;
@@ -726,10 +727,13 @@ const SVGS = {
     <rect x="75" y="310" width="38" height="38" rx="4" fill="#334155"/>
     <rect x="142" y="310" width="38" height="38" rx="4" fill="#fde047"/>
     <text x="162" y="390" text-anchor="middle" fill="#94a3b8" font-size="16" font-weight="bold">23:00 • НОЧЬЮ Я СПЛЮ</text>
-    <!-- Карточка QR-кода справа внутри иллюстрации -->
+    <!-- Карточка QR-кода справа внутри иллюстрации (строго в рамке) -->
     <rect x="315" y="115" width="250" height="295" rx="22" fill="#ffffff" stroke="#0891b2" stroke-width="6"/>
-    <text x="440" y="150" text-anchor="middle" fill="#0891b2" font-size="17" font-weight="bold">📱 ИНТЕРАКТИВНАЯ ДОСКА</text>
-    <text x="440" y="172" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="bold">«Собери мой день в Брянске»</text>
+    <text x="440" y="145" text-anchor="middle" fill="#0891b2" font-size="16.5" font-weight="bold">📱 ИНТЕРАКТИВНАЯ ДОСКА</text>
+    <text x="440" y="166" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="bold">«Собери мой день в Брянске»</text>
+    <rect x="347" y="176" width="186" height="186" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <image id="svgQrImg" x="354" y="183" width="172" height="172" preserveAspectRatio="xMidYMid meet" crossorigin="anonymous" href="__QR_URL_PLACEHOLDER__"/>
+    <text x="440" y="388" text-anchor="middle" fill="#0f172a" font-size="14" font-weight="bold">Наведите камеру 📱</text>
   </svg>`
 };
 
@@ -1026,13 +1030,8 @@ function renderSlide() {
 
   const qrUrl = document.getElementById('qrUrl').value.trim() || "https://1nitroglicerin1-debug.github.io/----/";
   const encodedQr = encodeURIComponent(qrUrl);
-
-  const qrOverlayHtml = s.isQrSlide ? `
-    <div class="qr-overlay-badge">
-      <img crossorigin="anonymous" src="https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodedQr}" alt="QR Code"/>
-      <span>Наведите камеру 📱</span>
-    </div>
-  ` : '';
+  const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=6&data=${encodedQr}`;
+  const svgMarkup = s.svg.replace('__QR_URL_PLACEHOLDER__', qrApiUrl);
 
   frame.innerHTML = `
     <div class="slide-header">
@@ -1041,14 +1040,13 @@ function renderSlide() {
         <h1 class="slide-title">${s.title}</h1>
         <p class="slide-sub">${s.sub}</p>
       </div>
-      <div style="background:#fff;padding:10px 18px;border-radius:14px;font-weight:900;color:#1e293b;box-shadow:0 4px 12px rgba(0,0,0,0.06);white-space:nowrap;">
+      <div style="background:#fff;padding:10px 18px;border-radius:14px;font-weight:900;color:#1e293b;box-shadow:0 4px 12px rgba(0,0,0,0.06);white-space:nowrap;flex-shrink:0;">
         БГТУ • Брянск 🇷🇺
       </div>
     </div>
     <div class="slide-body">
       <div class="art-box">
-        ${s.svg}
-        ${qrOverlayHtml}
+        ${svgMarkup}
       </div>
       <div class="cards-stack">
         ${s.cards.map(c => `
@@ -1144,18 +1142,25 @@ async function exportToPptx() {
 
       // Левая колонка: Уникальная PNG-иллюстрация из SVG каждого слайда
       if (s.svg) {
-        const pngData = await svgToPngBase64(s.svg, 900, 675);
+        let svgForExport = s.svg;
+        if (s.isQrSlide) {
+          try {
+            const qrResp = await fetch(`https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=6&data=${encodeURIComponent(qrUrl)}`);
+            const qrBlob = await qrResp.blob();
+            const qrBase64 = await new Promise((res) => {
+              const reader = new FileReader();
+              reader.onloadend = () => res(reader.result);
+              reader.readAsDataURL(qrBlob);
+            });
+            svgForExport = svgForExport.replace('__QR_URL_PLACEHOLDER__', qrBase64);
+          } catch (e) {
+            svgForExport = svgForExport.replace('__QR_URL_PLACEHOLDER__', '');
+          }
+        }
+        const pngData = await svgToPngBase64(svgForExport, 900, 675);
         slide.addImage({
           data: pngData,
           x: 0.45, y: 1.58, w: 6.1, h: 4.58
-        });
-      }
-
-      // На 20-м слайде добавляем кликабельную ссылку на интерактивную доску поверх блока QR
-      if (s.isQrSlide) {
-        slide.addText("Наведите камеру или откройте ссылку:\n" + qrUrl, {
-          x: 3.65, y: 3.15, w: 2.5, h: 1.5,
-          fontSize: 11, bold: true, align: "center", color: "0F172A"
         });
       }
 
