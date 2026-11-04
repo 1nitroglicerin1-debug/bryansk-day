@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Иллюстрированная презентация РКИ: Мой день в Брянске (Урок 7)</title>
+  <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --primary: #4f46e5;
+      --accent: #f59e0b;
+      --emerald: #10b981;
+      --rose: #f43f5e;
+    }
+    * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+    body {
+      margin: 0; background: var(--bg-dark); color: #1e293b;
+      display: flex; flex-direction: column; height: 100vh; overflow: hidden;
+    }
+    .toolbar {
+      background: #1e293b; color: #fff; padding: 10px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; border-bottom: 1px solid #334155; flex-wrap: wrap;
+    }
+    .toolbar-left { display: flex; align-items: center; gap: 12px; }
+    .toolbar-title { font-weight: 800; font-size: 1.05rem; color: #38bdf8; }
+    .qr-input {
+      background: #0f172a; border: 1px solid #475569; color: #fff;
+      padding: 7px 12px; border-radius: 8px; width: 280px; font-size: 0.85rem;
+    }
+    .toolbar-actions { display: flex; align-items: center; gap: 10px; }
+    .btn {
+      border: none; border-radius: 8px; padding: 9px 16px;
+      font-weight: 700; cursor: pointer; font-size: 0.9rem;
+      display: inline-flex; align-items: center; gap: 6px; transition: 0.15s;
+    }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
+    .btn-nav { background: #334155; color: #fff; }
+    .btn-pptx { background: linear-gradient(135deg, #10b981, #059669); color: #fff; box-shadow: 0 4px 12px rgba(16,185,129,0.35); }
+    .btn-full { background: #6366f1; color: #fff; }
+    .slide-counter { font-weight: 700; color: #cbd5e1; min-width: 70px; text-align: center; }
+
+    .stage {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: 20px; overflow: hidden;
+    }
+    .slide-frame {
+      width: 1280px; height: 720px; border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.55); overflow: hidden;
+      position: relative; display: flex; flex-direction: column;
+      transform-origin: center center; background: #fff;
+    }
+    .slide-header {
+      padding: 22px 36px 14px; display: flex; justify-content: space-between;
+      align-items: center;
+    }
+    .badge {
+      padding: 6px 14px; border-radius: 999px; font-weight: 800;
+      font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .slide-title { margin: 6px 0 0; font-size: 2.1rem; font-weight: 900; line-height: 1.15; }
+    .slide-sub { margin: 4px 0 0; font-size: 1.05rem; font-weight: 600; opacity: 0.8; }
+
+    .slide-body {
+      flex: 1; display: grid; grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px; padding: 10px 36px 28px; align-items: center;
+    }
+    .slide-body.grid-4 {
+      grid-template-columns: repeat(4, 1fr); gap: 18px;
+    }
+    .slide-body.grid-2x2 {
+      grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); gap: 18px;
+    }
+    .art-box {
+      background: rgba(255,255,255,0.88); border-radius: 22px;
+      padding: 16px; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08); height: 100%; max-height: 520px;
+      border: 3px solid rgba(255,255,255,0.9);
+    }
+    .art-box svg { width: 100%; height: 100%; max-height: 470px; }
+
+    .cards-stack { display: flex; flex-direction: column; gap: 14px; }
+    .phrase-card {
+      background: #fff; border-radius: 16px; padding: 15px 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06); border-left: 8px solid #4f46e5;
+    }
+    .phrase-ru { font-size: 1.45rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
+    .phrase-ru span.hl { color: #e11d48; text-decoration: underline; }
+    .phrase-en { font-size: 1.05rem; font-weight: 700; color: #2563eb; }
+    .phrase-fr { font-size: 1rem; font-style: italic; color: #059669; font-weight: 600; }
+
+    .mini-card {
+      background: #fff; border-radius: 18px; padding: 16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08); display: flex;
+      flex-direction: column; align-items: center; text-align: center;
+      border-top: 6px solid #4f46e5; height: 100%; justify-content: space-between;
+    }
+    .mini-card svg { width: 160px; height: 135px; }
+    .mini-ru { font-size: 1.35rem; font-weight: 900; color: #0f172a; margin: 6px 0 2px; }
+    .mini-tr { font-size: 0.92rem; font-weight: 700; color: #475569; line-height: 1.35; }
+    .mini-ex {
+      background: #f8fafc; padding: 8px 10px; border-radius: 10px;
+      font-size: 0.92rem; font-weight: 700; color: #1e293b; width: 100%; margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="toolbar-left">
+    <span class="toolbar-title">🎨 РКИ (Урок 7): Иллюстрированная презентация</span>
+    <input type="text" id="qrUrl" class="qr-input" placeholder="Ссылка на GitHub Pages / Padlet для QR-кода..." value="https://1nitroglicerin1-debug.github.io/bryansk-day/" oninput="renderSlide()">
+  </div>
+  <div class="toolbar-actions">
+    <button class="btn btn-nav" onclick="prevSlide()">◀ Назад</button>
+    <span class="slide-counter" id="slideCounter">1 / 12</span>
+    <button class="btn btn-nav" onclick="nextSlide()">Вперёд ▶</button>
+    <button class="btn btn-full" onclick="toggleFull()">⛶ На весь экран</button>
+    <button class="btn btn-pptx" id="exportBtn" onclick="exportToPptx()">📥 Скачать PowerPoint (.PPTX) с картинками</button>
+  </div>
+</div>
+
+<div class="stage" id="stage">
+  <div class="slide-frame" id="slideFrame"></div>
+</div>
+
+<script>
+// ================= НАБОР КРАСОЧНЫХ SVG-ИЛЛЮСТРАЦИЙ =================
+const SVGS = {
+  // 1. Обложка: БГТУ + Часы + Дружба
+  heroBryansk: `<svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#fef08a"/>
+      </linearGradient>
+    </defs>
+    <rect width="600" height="450" rx="24" fill="url(#sky1)"/>
+    <circle cx="490" cy="95" r="52" fill="#facc15"/>
+    <circle cx="490" cy="95" r="65" fill="#fde047" opacity="0.35"/>
+    <!-- Облака -->
+    <g fill="#ffffff" opacity="0.9">
+      <rect x="60" y="60" width="110" height="36" rx="18"/>
+      <circle cx="95" cy="60" r="24"/><circle cx="130" cy="56" r="28"/>
+      <rect x="250" y="45" width="95" height="30" rx="15"/>
+    </g>
+    <!-- Зеленый бульвар 50 лет Октября -->
+    <rect x="0" y="340" width="600" height="110" fill="#22c55e"/>
+    <path d="M 180 450 L 260 340 L 340 340 L 420 450 Z" fill="#94a3b8"/>
+    <!-- Здание БГТУ с колоннами -->
+    <rect x="95" y="175" width="410" height="170" rx="6" fill="#f97316"/>
+    <rect x="85" y="160" width="430" height="22" rx="4" fill="#ea580c"/>
+    <polygon points="180,160 300,95 420,160" fill="#dc2626"/>
+    <rect x="255" y="132" width="90" height="26" rx="4" fill="#1e3a8a"/>
+    <text x="300" y="150" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">БГТУ</text>
+    <!-- Колонны БГТУ -->
+    <g fill="#ffffff">
+      <rect x="200" y="175" width="18" height="170"/><rect x="245" y="175" width="18" height="170"/>
+      <rect x="291" y="175" width="18" height="170"/><rect x="337" y="175" width="18" height="170"/>
+      <rect x="382" y="175" width="18" height="170"/>
+    </g>
+    <!-- Окна -->
+    <g fill="#bae6fd">
+      <rect x="120" y="200" width="32" height="42" rx="4"/><rect x="120" y="265" width="32" height="42" rx="4"/>
+      <rect x="445" y="200" width="32" height="42" rx="4"/><rect x="445" y="265" width="32" height="42" rx="4"/>
+    </g>
+    <!-- Деревья -->
+    <rect x="48" y="290" width="14" height="60" fill="#78350f"/>
+    <circle cx="55" cy="275" r="42" fill="#15803d"/>
+    <rect x="535" y="290" width="14" height="60" fill="#78350f"/>
+    <circle cx="542" cy="275" r="42" fill="#15803d"/>
+    <!-- Большие часы распорядка дня -->
+    <circle cx="115" cy="115" r="48" fill="#ffffff" stroke="#1e3a8a" stroke-width="8"/>
+    <line x1="115" y1="115" x2="115" y2="82" stroke="#dc2626" stroke-width="6" stroke-linecap="round"/>
+    <line x1="115" y1="115" x2="142" y2="115" stroke="#1e3a8a" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="115" cy="115" r="6" fill="#1e3a8a"/>
+  </svg>`,
+
+  // 2. Утро: будильник и пробуждение
+  morningWake: `<svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+    <rect width="600" height="450" rx="24" fill="#fef3c7"/>
+    <!-- Окно с утренним солнцем -->
+    <rect x="55" y="45" width="210" height="230" rx="12" fill="#38bdf8" stroke="#ffffff" stroke-width="10"/>
+    <circle cx="160" cy="150" r="46" fill="#facc15"/>
+    <line x1="160" y1="45" x2="160" y2="275" stroke="#ffffff" stroke-width="8"/>
+    <line x1="55" y1="160" x2="265" y2="160" stroke="#ffffff" stroke-width="8"/>
+    <!-- Крупный звонящий будильник 07:00 -->
+    <circle cx="430" cy="235" r="115" fill="#ef4444"/>
+    <circle cx="430" cy="235" r="92" fill="#ffffff"/>
+    <path d="M 335 125 A 35 35 0 0 1 385 105 Z" fill="#f59e0b" stroke="#b45309" stroke-width="5"/>
+    <path d="M 525 125 A 35 35 0 0 0 475 105 Z" fill="#f59e0b" stroke="#b45309" stroke-width="5"/>
+    <line x1="430" y1="235" x2="395" y2="275" stroke="#1e293b" stroke-width="9" stroke-linecap="round"/>
+    <line x1="430" y1="235" x2="430" y2="162" stroke="#ef4444" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="430" cy="235" r="10" fill="#1e293b"/>
+    <rect x="355" y="365" width="150" height="42" rx="10" fill="#1e293b"/>
+    <text x="430" y="394" text-anchor="middle" fill="#4ade80" font-size="26" font-weight="bold">07:00 AM</text>
+    <!-- Звуковые волны -->
+    <path d="M 305 105 Q 280 80 310 60" stroke="#ef4444" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 555 105 Q 580 80 550 60" stroke="#ef4444" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- Кровать в общежитии -->
+    <rect x="45" y="325" width="250" height="75" rx="12" fill="#3b82f6"/>
+    <rect x="60" y="295" width="75" height="35" rx="14" fill="#ffffff"/>
+  </svg>`,
+
+  // 3. Завтрак: Яйца, хлеб, рис, кофе, чай
+  breakfastFood: `<svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+    <rect width="600" height="450" rx="24" fill="#ffedd5"/>
+    <ellipse cx="300" cy="270" rx="260" ry="145" fill="#fb923c" opacity="0.25"/>
+    <!-- Тарелка с яичницей и тостом -->
+    <circle cx="215" cy="260" r="115" fill="#ffffff" stroke="#e2e8f0" stroke-width="8"/>
+    <path d="M 150 230 C 140 190, 210 180, 230 220 C 260 230, 250 290, 200 290 C 160 295, 145 260, 150 230 Z" fill="#fef9c3"/>
+    <circle cx="195" cy="245" r="24" fill="#f59e0b"/>
+    <circle cx="188" cy="238" r="6" fill="#ffffff"/>
+    <!-- Тост/Хлеб -->
+    <rect x="235" y="220" width="62" height="62" rx="12" fill="#d97706" stroke="#92400e" stroke-width="5"/>
+    <rect x="245" y="230" width="42" height="42" rx="6" fill="#fde68a"/>
+    <!-- Кружка горячего кофе/чая -->
+    <rect x="405" y="195" width="105" height="120" rx="18" fill="#dc2626"/>
+    <path d="M 510 220 C 548 220, 548 285, 510 285" fill="none" stroke="#dc2626" stroke-width="14"/>
+    <ellipse cx="457" cy="198" rx="48" ry="12" fill="#78350f"/>
+    <!-- Пар над чашкой -->
+    <path d="M 435 165 Q 425 135 445 115" stroke="#94a3b8" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 465 160 Q 455 130 475 110" stroke="#94a3b8" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 490 168 Q 480 138 500 118" stroke="#94a3b8" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- Банан -->
+    <path d="M 330 350 Q 410 390 480 335 Q 435 425 320 375 Z" fill="#facc15" stroke="#ca8a04" stroke-width="4"/>
+  </svg>`,
+
+  // 4. На уроке русского языка в БГТУ
+  classroomStudy: `<svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+    <rect width="600" height="450" rx="24" fill="#e0f2fe"/>
+    <!-- Зеленая школьная/университетская доска -->
+    <rect x="65" y="45" width="470" height="235" rx="14" fill="#065f46" stroke="#b45309" stroke-width="14"/>
+    <text x="300" y="105" text-anchor="middle" fill="#ffffff" font-size="28" font-weight="bold">УРОК 7 • МОЙ ДЕНЬ</text>
+    <text x="110" y="160" fill="#fde047" font-size="24" font-weight="bold">• Я чита́ю текст (I)</text>
+    <text x="110" y="205" fill="#6ee7b7" font-size="24" font-weight="bold">• Я говорю́ по-русски (II)</text>
+    <text x="110" y="250" fill="#fca5a5" font-size="24" font-weight="bold">• Мы пи́шем диктант</text>
+    <!-- Учебник Дорога в Россию на парте -->
+    <rect x="110" y="315" width="190" height="105" rx="10" fill="#2563eb"/>
+    <rect x="122" y="325" width="166" height="85" rx="6" fill="#ffffff"/>
+    <text x="205" y="362" text-anchor="middle" fill="#1e3a8a" font-size="18" font-weight="bold">ДОРОГА</text>
+    <text x="205" y="386" text-anchor="middle" fill="#dc2626" font-size="18" font-weight="bold">В РОССИЮ</text>
+    <!-- Тетрадь и ручка -->
+    <rect x="345" y="315" width="160" height="105" rx="8" fill="#fef08a" stroke="#ca8a04" stroke-width="4"/>
+    <line x1="365" y1="345" x2="485" y2="345" stroke="#94a3b8" stroke-width="3"/>
+    <line x1="365" y1="370" x2="485" y2="370" stroke="#94a3b8" stroke-width="3"/>
+    <line x1="365" y1="395" x2="455" y2="395" stroke="#94a3b8" stroke-width="3"/>
+    <line x1="450" y1="295" x2="515" y2="385" stroke="#ef4444" stroke-width="12" stroke-linecap="round"/>
+  </svg>`,
+
+  // 5. Обед в столовой БГТУ
+  lunchCanteen: `<svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+    <rect width="600" height="450" rx="24" fill="#dcfce7"/>
+    <!-- Поднос столовой -->
+    <rect x="55" y="65" width="490" height="320" rx="26" fill="#94a3b8" stroke="#64748b" stroke-width="8"/>
+    <rect x="75" y="85" width="450" height="280" rx="18" fill="#f8fafc"/>
+    <!-- Тарелка с горячим борщом/супом -->
+    <circle cx="195" cy="215" r="88" fill="#e2e8f0"/>
+    <circle cx="195" cy="215" r="70" fill="#ef4444"/>
+    <circle cx="195" cy="215" r="22" fill="#ffffff" opacity="0.9"/>
+    <circle cx="180" cy="195" r="6" fill="#22c55e"/><circle cx="210" cy="225" r="6" fill="#22c55e"/>
+    <!-- Тарелка с рисом, курицей и салатом -->
+    <circle cx="395" cy="245" r="85" fill="#e2e8f0"/>
+    <circle cx="370" cy="235" r="42" fill="#fef9c3"/>
+    <ellipse cx="425" cy="260" rx="35" ry="22" fill="#d97706"/>
+    <circle cx="405" cy="200" r="22" fill="#22c55e"/>
+    <!-- Стакан чая -->
+    <rect x="445" y="95" width="55" height="72" rx="10" fill="#b45309" stroke="#ffffff" stroke-width="5"/>
+    <!-- Ложка и вилка -->
+    <rect x="92" y="135" width="10" height="150" rx="5" fill="#64748b"/>
+    <ellipse cx="97" cy="135" rx="14" ry="22" fill="#64748b"/>
+  </svg>`,
+
+  // 6. Парк Толстого в Брянске и деревянные скульптуры
+  tolstoyPark: `<svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+    <rect width="600" height="450" rx="24" fill="#d1fae5"/>
+    <rect x="0" y="320" width="600" height="130" fill="#10b981"/>
+    <path d="M 220 450 L 275 320 L 335 320 L 390 450 Z" fill="#fde68a"/>
+    <!-- Деревья парка -->
+    <rect x="85" y="210" width="24" height="120" fill="#78350f"/>
+    <circle cx="97" cy="175" r="68" fill="#15803d"/>
+    <circle cx="135" cy="200" r="48" fill="#16a34a"/>
+    <rect x="485" y="210" width="24" height="120" fill="#78350f"/>
+    <circle cx="497" cy="175" r="68" fill="#15803d"/>
+    <!-- Знаменитая деревянная скульптура в парке Толстого -->
+    <rect x="255" y="125" width="90" height="205" rx="16" fill="#b45309" stroke="#78350f" stroke-width="6"/>
+    <circle cx="300" cy="170" r="28" fill="#d97706"/>
+    <polygon points="265,135 300,95 335,135" fill="#f59e0b"/>
+    <rect x="240" y="320" width="120" height="24" rx="6" fill="#78350f"/>
+    <!-- Смартфон делает фото -->
+    <rect x="385" y="235" width="115" height="175" rx="16" fill="#1e293b" stroke="#38bdf8" stroke-width="5"/>
+    <rect x="397" y="252" width="91" height="130" rx="8" fill="#bae6fd"/>
+    <circle cx="442" cy="396" r="8" fill="#fff"/>
+    <circle cx="442" cy="315" r="22" fill="#f59e0b"/>
+  </svg>`,
+
+  // 7. Вечер и ночь в общежитии (Ужин, ДЗ, Звонок маме, Сон)
+  eveningNight: `<svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+    <rect width="600" height="450" rx="24" fill="#1e1b4b"/>
+    <!-- Звезды и Луна -->
+    <circle cx="495" cy="95" r="46" fill="#fef08a"/>
+    <circle cx="515" cy="82" r="38" fill="#1e1b4b"/>
+    <circle cx="120" cy="70" r="4" fill="#fff"/><circle cx="240" cy="55" r="5" fill="#fde047"/>
+    <circle cx="360" cy="90" r="4" fill="#fff"/><circle cx="80" cy="140" r="3" fill="#fde047"/>
+    <!-- Кастрюля с вкусным ужином -->
+    <rect x="65" y="220" width="160" height="110" rx="16" fill="#ef4444"/>
+    <rect x="50" y="205" width="190" height="20" rx="8" fill="#cbd5e1"/>
+    <circle cx="145" cy="195" r="12" fill="#ef4444"/>
+    <!-- Смартфон со звонком маме и сердечком -->
+    <rect x="285" y="170" width="125" height="215" rx="20" fill="#334155" stroke="#fff" stroke-width="5"/>
+    <rect x="298" y="190" width="99" height="165" rx="10" fill="#38bdf8"/>
+    <circle cx="347" cy="255" r="28" fill="#fde047"/>
+    <circle cx="347" cy="325" r="18" fill="#22c55e"/>
+    <!-- Zzz Сон -->
+    <text x="455" y="245" fill="#fde047" font-size="42" font-weight="bold">Z</text>
+    <text x="495" y="205" fill="#38bdf8" font-size="34" font-weight="bold">z</text>
+    <text x="525" y="175" fill="#ffffff" font-size="26" font-weight="bold">z</text>
+  </svg>`,
+
+  // 8. Грамматика и спряжения (визуальная схема)
+  grammarVisual: `<svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+    <rect width="600" height="450" rx="24" fill="#f3e8ff"/>
+    <!-- I Спряжение -->
+    <rect x="35" y="35" width="250" height="380" rx="20" fill="#ffffff" stroke="#6366f1" stroke-width="5"/>
+    <rect x="35" y="35" width="250" height="62" rx="16" fill="#4f46e5"/>
+    <text x="160" y="75" text-anchor="middle" fill="#fff" font-size="22" font-weight="bold">I СПРЯЖЕНИЕ (-АТЬ)</text>
+    <text x="60" y="135" fill="#1e293b" font-size="22" font-weight="bold">Я чита́<tspan fill="#e11d48">ю</tspan></text>
+    <text x="60" y="180" fill="#1e293b" font-size="22" font-weight="bold">Ты чита́<tspan fill="#e11d48">ешь</tspan></text>
+    <text x="60" y="225" fill="#1e293b" font-size="22" font-weight="bold">Он/Она чита́<tspan fill="#e11d48">ет</tspan></text>
+    <text x="60" y="270" fill="#1e293b" font-size="22" font-weight="bold">Мы чита́<tspan fill="#e11d48">ем</tspan></text>
+    <text x="60" y="315" fill="#1e293b" font-size="22" font-weight="bold">Вы чита́<tspan fill="#e11d48">ете</tspan></text>
+    <text x="60" y="360" fill="#1e293b" font-size="22" font-weight="bold">Они чита́<tspan fill="#e11d48">ют</tspan></text>
+    <!-- II Спряжение -->
+    <rect x="315" y="35" width="250" height="380" rx="20" fill="#ffffff" stroke="#10b981" stroke-width="5"/>
+    <rect x="315" y="35" width="250" height="62" rx="16" fill="#059669"/>
+    <text x="440" y="75" text-anchor="middle" fill="#fff" font-size="22" font-weight="bold">II СПРЯЖЕНИЕ (-ИТЬ)</text>
+    <text x="340" y="135" fill="#1e293b" font-size="22" font-weight="bold">Я говор<tspan fill="#059669">ю́</tspan></text>
+    <text x="340" y="180" fill="#1e293b" font-size="22" font-weight="bold">Ты говор<tspan fill="#059669">и́шь</tspan></text>
+    <text x="340" y="225" fill="#1e293b" font-size="22" font-weight="bold">Он/Она говор<tspan fill="#059669">и́т</tspan></text>
+    <text x="340" y="270" fill="#1e293b" font-size="22" font-weight="bold">Мы говор<tspan fill="#059669">и́м</tspan></text>
+    <text x="340" y="315" fill="#1e293b" font-size="22" font-weight="bold">Вы говор<tspan fill="#059669">и́те</tspan></text>
+    <text x="340" y="360" fill="#1e293b" font-size="22" font-weight="bold">Они говор<tspan fill="#059669">я́т</tspan></text>
+  </svg>`,
+
+  // 9. Шкала частотности 100% -> 0%
+  frequencyBars: `<svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+    <rect width="600" height="450" rx="24" fill="#f8fafc"/>
+    <g font-size="20" font-weight="bold">
+      <rect x="40" y="35" width="520" height="48" rx="12" fill="#dcfce7"/>
+      <rect x="40" y="35" width="520" height="48" rx="12" fill="#10b981"/>
+      <text x="60" y="66" fill="#fff">100% • ВСЕГДА (Always / Toujours)</text>
+
+      <rect x="40" y="102" width="520" height="48" rx="12" fill="#e0f2fe"/>
+      <rect x="40" y="102" width="420" height="48" rx="12" fill="#0284c7"/>
+      <text x="60" y="133" fill="#fff">80% • ОБЫЧНО (Usually / D'habitude)</text>
+
+      <rect x="40" y="169" width="520" height="48" rx="12" fill="#fef9c3"/>
+      <rect x="40" y="169" width="325" height="48" rx="12" fill="#eab308"/>
+      <text x="60" y="200" fill="#fff">60% • ЧАСТО (Often / Souvent)</text>
+
+      <rect x="40" y="236" width="520" height="48" rx="12" fill="#ffedd5"/>
+      <rect x="40" y="236" width="210" height="48" rx="12" fill="#f97316"/>
+      <text x="60" y="267" fill="#fff">30% • ИНОГДА</text>
+      <text x="265" y="267" fill="#9a3412">(Sometimes / Parfois)</text>
+
+      <rect x="40" y="303" width="520" height="48" rx="12" fill="#fee2e2"/>
+      <rect x="40" y="303" width="110" height="48" rx="12" fill="#ef4444"/>
+      <text x="165" y="334" fill="#991b1b">10% • РЕДКО (Rarely / Rarement)</text>
+
+      <rect x="40" y="370" width="520" height="52" rx="12" fill="#1e293b"/>
+      <text x="60" y="403" fill="#f87171">0% • НИКОГДА НЕ... (Never / Ne... jamais)</text>
+    </g>
+  </svg>`
+};
+
+// ================= ДАННЫЕ 12 КРАСОЧНЫХ СЛАЙДОВ =================
+const SLIDES = [
+  {
+    bg: "linear-gradient(135deg, #eff6ff 0%, #fef3c7 100%)",
+    badge: "КУРСЫ РКИ • УРОВЕНЬ А1 • УРОК 7",
+    badgeBg: "#4f46e5",
+    title: "МОЙ ДЕНЬ В БРЯНСКЕ",
+    sub: "My Day in Bryansk (RU / EN) • Ma journée à Briansk (RU / FR)",
+    svg: SVGS.heroBryansk,
+    cards: [
+      { ru: "Учебник «Дорога в Россию» (Урок 7)", en: "Vocabulary, Verbs & Reading", fr: "Vocabulaire, Verbes et Lecture", color: "#4f46e5" },
+      { ru: "Наши ориентиры в Брянске:", en: "BSTU Main Building, Dormitory, Tolstoy Park", fr: "Bâtiment principal de l'université, Foyer, Parc Tolstoï", color: "#f59e0b" },
+      { ru: "Главные вопросы урока:", en: "КОГДА? (When?) • ЧТО ТЫ ДЕЛАЕШЬ? (What do you do?)", fr: "QUAND ? • QUE FAIS-ТУ ?", color: "#10b981" }
+    ]
+  },
+  {
+    bg: "linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%)",
+    badge: "СЛОВАРЬ • ВРЕМЯ СУТОК",
+    badgeBg: "#0284c7",
+    title: "КОГДА? — ВРЕМЯ СУТОК",
+    sub: "When? Parts of the day • Quand ? Les moments de la journée",
+    svg: SVGS.heroBryansk,
+    cards: [
+      { ru: "🌅 У́ТРО (06:00–12:00) ➔ У́ТРОМ", en: "In the morning: Утром я завтракаю и иду в БГТУ.", fr: "Le matin : Le matin, je prends le petit déjeuner.", color: "#f59e0b" },
+      { ru: "☀️ ДЕНЬ (12:00–18:00) ➔ ДНЁМ", en: "In the afternoon: Днём я учу русский язык и обедаю.", fr: "L'après-midi : J'apprends le russe et je déjeune.", color: "#0284c7" },
+      { ru: "🌇 ВЕ́ЧЕР (18:00–24:00) ➔ ВЕ́ЧЕРОМ", en: "In the evening: Вечером я готовлю ужин и отдыхаю.", fr: "Le soir : Le soir, je prépare le dîner et je me repose.", color: "#7c3aed" },
+      { ru: "🌙 НОЧЬ (00:00–06:00) ➔ НО́ЧЬЮ", en: "At night: Ночью я крепко сплю в общежитии.", fr: "La nuit : La nuit, je dors au foyer.", color: "#1e293b" }
+    ]
+  },
+  {
+    bg: "linear-gradient(135deg, #fffbeb 0%, #ffedd5 100%)",
+    badge: "07:00 — УТРО В ОБЩЕЖИТИИ БГТУ",
+    badgeBg: "#ea580c",
+    title: "УТРОМ Я ПРОСЫПАЮСЬ И ВСТАЮ",
+    sub: "Morning in the dormitory • Le matin au foyer étudiant",
+    svg: SVGS.morningWake,
+    cards: [
+      { ru: "⏰ Я просыпа́юсь в 7 часо́в утра́", en: "I wake up at 7 o'clock in the morning", fr: "Je me réveille à 7 heures du matin", color: "#ef4444" },
+      { ru: "🛏️ Снача́ла я встаю́, пото́м умыва́юсь", en: "First I get up, then I wash my face", fr: "D'abord je me lève, ensuite je me lave", color: "#f59e0b" },
+      { ru: "🪥 Я чи́щу зу́бы и одева́юсь", en: "I brush my teeth and get dressed", fr: "Je me brosse les dents et je m'habille", color: "#0284c7" }
+    ]
+  },
+  {
+    bg: "linear-gradient(135deg, #fef2f2 0%, #fef3c7 100%)",
+    badge: "07:45 — ЗАВТРАК",
+    badgeBg: "#d97706",
+    title: "ЧТО ВЫ ЕДИТЕ И ПЬЁТЕ УТРОМ?",
+    sub: "Having breakfast • Prendre le petit déjeuner",
+    svg: SVGS.breakfastFood,
+    cards: [
+      { ru: "🍳 У́тром я за́втракаю в общежи́тии", en: "In the morning I have breakfast in the dorm", fr: "Le matin, je prends le petit déjeuner au foyer", color: "#d97706" },
+      { ru: "🥖 Я ем хлеб, сыр, я́йца, рис и бана́н", en: "I eat bread, cheese, eggs, rice and a banana", fr: "Je mange du pain, du fromage, des œufs et du riz", color: "#16a34a" },
+      { ru: "☕ Я пью горя́чий чай и́ли сла́дкий ко́фе", en: "I drink hot tea or sweet coffee", fr: "Je bois du thé chaud ou du café sucré", color: "#dc2626" }
+    ]
+  },
+  {
+    bg: "linear-gradient(135deg, #eff6ff 0%, #dcfce7 100%)",
+    badge: "08:30 — ДОРОГА В УНИВЕРСИТЕТ",
+    badgeBg: "#2563eb",
+    title: "ГЛАВНЫЙ КОРПУС БГТУ",
+    sub: "Бульвар 50 лет Октября, дом 7 • Going to university",
+    svg: SVGS.heroBryansk,
+    cards: [
+      { ru: "🚶 В 8:30 я иду́ на уро́к в БГТУ", en: "At 8:30 I go to class at BSTU", fr: "À 8h30, je vais en cours à l'université", color: "#2563eb" },
+      { ru: "🏛️ Гла́вный ко́рпус — бульва́р 50 лет Октября́", en: "The main building is on 50 Let Oktyabrya Blvd", fr: "Le bâtiment principal est sur le boulevard", color: "#ea580c" },
+      { ru: "⚡ Спряжение глагола ИДТИ́:", en: "Я иду́ • Ты идёшь • Он идёт • Мы идём • Они иду́т", fr: "Aller à pied (marcher vers l'université)", color: "#059669" }
+    ]
+  },
+  {
+    bg: "linear-gradient(135deg, #e0f2fe 0%, #ede9fe 100%)",
+    badge: "09:00–13:00 — В АУДИТОРИИ БГТУ",
+    badgeBg: "#4f46e5",
+    title: "НА УРОКЕ РУССКОГО ЯЗЫКА",
+    sub: "In the Russian class • En cours de langue russe",
+    svg: SVGS.classroomStudy,
+    cards: [
+      { ru: "🎧 Снача́ла мы слу́шаем преподава́теля", en: "First we listen to the teacher and repeat words", fr: "D'abord, nous écoutons le professeur", color: "#4f46e5" },
+      { ru: "📖 Пото́м мы чита́ем текст и пи́шем дикта́нт", en: "Then we read a text and write a dictation", fr: "Ensuite, nous lisons un texte et écrivons une dictée", color: "#0284c7" },
+      { ru: "🗣️ Мы хорошо́ говори́м и отвеча́ем по-ру́сски!", en: "We speak and answer in Russian well!", fr: "Nous parlons et répondons bien en russe !", color: "#059669" }
+    ]
+  },
+  {
+    bg: "linear-gradient(135deg, #f3e8ff 0%, #fce7f3 100%)",
+    badge: "ГРАММАТИКА УРОКА 7",
+    badgeBg: "#7c3aed",
+    title: "ГЛАГОЛЫ I И II СПРЯЖЕНИЯ",
+    sub: "Verb Conjugation Groups I & II • Les groupes de conjugaison",
+    svg: SVGS.grammarVisual,
+    cards: [
+      { ru: "1️⃣ Глаголы I спряжения (-АТЬ / -ЯТЬ):", en: "завтракать, обедать, ужинать, читать, гулять, отдыхать", fr: "Окончания: -Ю, -ЕШЬ, -ЕТ, -ЕМ, -ЕТЕ, -ЮТ", color: "#4f46e5" },
+      { ru: "2️⃣ Глаголы II спряжения (-ИТЬ):", en: "говорить, учить, готовить, любить, смотреть, спать", fr: "Окончания: -Ю(-У), -ИШЬ, -ИТ, -ИМ, -ИТЕ, -ЯТ(-АТ)", color: "#059669" },
+      { ru: "⚠️ Запомните чередования в форме «Я»:", en: "гото́вить ➔ я гото́ВЛю • спать ➔ я сПЛю • писа́ть ➔ я пиШу́", fr: "Attention aux changements de consonnes à la 1ère personne !", color: "#e11d48" }
+    ]
+  },
+  {
+    bg: "linear-gradient(135deg, #ecfdf5 0%, #fef9c3 100%)",
+    badge: "13:30 — ДЕНЬ • СТОЛОВАЯ БГТУ",
+    badgeBg: "#059669",
+    title: "ДНЁМ МЫ ОБЕДАЕМ В СТОЛОВОЙ",
+    sub: "Lunch at the university canteen • Le déjeuner à la cantine",
+    svg: SVGS.lunchCanteen,
+    cards: [
+      { ru: "🍲 Днём в 13:30 я обе́даю в столо́вой БГТУ", en: "At 13:30 I have lunch at the BSTU canteen", fr: "À 13h30, je déjeune à la cantine de l'université", color: "#059669" },
+      { ru: "🍗 Я ем горя́чий суп, рис, карто́фель и ку́рицу", en: "I eat hot soup, rice, potatoes and chicken", fr: "Je mange de la soupe chaude, du riz et du poulet", color: "#d97706" },
+      { ru: "🥗 Мы еди́м сала́т и пьём чай или сок", en: "We eat salad and drink tea or juice", fr: "Nous mangeons de la salade et buvons du thé", color: "#2563eb" }
+    ]
+  },
+  {
+    bg: "linear-gradient(135deg, #d1fae5 0%, #e0f2fe 100%)",
+    badge: "16:00 — ПРОГУЛКА ПО БРЯНСКУ",
+    badgeBg: "#0d9488",
+    title: "ПАРК-МУЗЕЙ ИМЕНИ А.К. ТОЛСТОГО",
+    sub: "Walking in Tolstoy Park • Promenade au parc Tolstoï",
+    svg: SVGS.tolstoyPark,
+    cards: [
+      { ru: "🌳 По́сле уро́ка мы иногда́ гуля́ем в па́рке Толсто́го", en: "After class we sometimes walk in Tolstoy Park", fr: "Après le cours, nous nous promenons parfois au parc", color: "#0d9488" },
+      { ru: "🪵 Мы смо́трим краси́вые деревя́нные скульпту́ры", en: "We look at beautiful wooden sculptures", fr: "Nous regardons les belles sculptures en bois", color: "#b45309" },
+      { ru: "📸 Мы отдыха́ем и де́лаем фотогра́фии", en: "We rest and take photos on our smartphones", fr: "Nous nous reposons et prenons des photos", color: "#2563eb" }
+    ]
+  },
+  {
+    bg: "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)",
+    badge: "НАРЕЧИЯ ЧАСТОТНОСТИ (УРОК 7)",
+    badgeBg: "#e11d48",
+    title: "КАК ЧАСТО ВЫ ЭТО ДЕЛАЕТЕ?",
+    sub: "How often? • À quelle fréquence ?",
+    svg: SVGS.frequencyBars,
+    cards: [
+      { ru: "✅ Утверждение: Я ВСЕГДА́ за́втракаю у́тром", en: "I ALWAYS have breakfast in the morning (100%)", fr: "Je prends TOUJOURS le petit déjeuner le matin", color: "#10b981" },
+      { ru: "🔄 Обычное действие: ОБЫ́ЧНО мы обе́даем в столо́вой", en: "USUALLY we have lunch in the canteen (80%)", fr: "D'HABITUDE, nous déjeunons à la cantine", color: "#0284c7" },
+      { ru: "🚫 Двойное отрицание: Днём я НИКОГДА́ НЕ сплю!", en: "In Russian: НИКОГДА + НЕ + verb!", fr: "Comme en français : NE ... JAMAIS (Никогда не)", color: "#e11d48" }
+    ]
+  },
+  {
+    bg: "linear-gradient(135deg, #eef2ff 0%, #fae8ff 100%)",
+    badge: "19:00–23:00 — ВЕЧЕР И НОЧЬ В ОБЩЕЖИТИИ",
+    badgeBg: "#4338ca",
+    title: "ЧТО МЫ ДЕЛАЕМ ВЕЧЕРОМ И НОЧЬЮ?",
+    sub: "Evening and night in the dormitory • Le soir et la nuit au foyer",
+    svg: SVGS.eveningNight,
+    cards: [
+      { ru: "🛒 Ве́чером мы покупа́ем проду́кты и гото́вим у́жин", en: "In the evening we buy food and cook dinner", fr: "Le soir, nous achetons des produits et cuisinons", color: "#ea580c" },
+      { ru: "📝 По́сле у́жина мы де́лаем дома́шнее зада́ние", en: "After dinner we do our Russian homework", fr: "Après le dîner, nous faisons nos devoirs", color: "#4f46e5" },
+      { ru: "📱 По́здно ве́чером я звоню́ ма́ме, а но́чью я сплю", en: "Late in the evening I call mom, and at night I sleep", fr: "Tard le soir j'appelle ma mère, et la nuit je dors", color: "#059669" }
+    ]
+  },
+  {
+    bg: "linear-gradient(135deg, #ecfeff 0%, #fef3c7 100%)",
+    badge: "ИНТЕРАКТИВ + ДОМАШНЕЕ ЗАДАНИЕ",
+    badgeBg: "#0891b2",
+    title: "ДОСКА «СОБЕРИ МОЙ ДЕНЬ» & ДЗ",
+    sub: "Scan QR code with your phone • Scannez le QR code",
+    isQrSlide: true,
+    cards: [
+      { ru: "📱 Интерактив на экране телефона:", en: "Scan the QR code ➔ Connect time, EN/FR translation & Bryansk photos!", fr: "Scannez le QR code ➔ Reliez les cartes avec des flèches !", color: "#0891b2" },
+      { ru: "🏠 Домашнее задание 1 (Текст):", en: "Write 8–10 sentences «Мой день в Брянске» (утром, днём, вечером, ночью)", fr: "Écrivez 8–10 phrases sur votre journée à Briansk", color: "#4f46e5" },
+      { ru: "📸 Домашнее задание 2 (3 Фотографии):", en: "Take 3 photos in Bryansk (morning, day, evening) & sign them in Russian!", fr: "Prenez 3 photos à Briansk et écrivez une phrase en russe !", color: "#10b981" }
+    ]
+  }
+];
+
+let currentIdx = 0;
+
+function getQrSvg(url) {
+  const encoded = encodeURIComponent(url || "https://1nitroglicerin1-debug.github.io/bryansk-day/");
+  return `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:14px;">
+    <img id="qrImg" crossorigin="anonymous" src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encoded}" style="width:290px;height:290px;border-radius:18px;border:8px solid #0891b2;padding:10px;background:#fff;" alt="QR"/>
+    <div style="font-weight:800;font-size:1.1rem;color:#0f172a;text-align:center;">Наведите камеру смартфона<br><span style="color:#0891b2;font-size:0.9rem;">${url}</span></div>
+  </div>`;
+}
+
+function renderSlide() {
+  const s = SLIDES[currentIdx];
+  const frame = document.getElementById('slideFrame');
+  frame.style.background = s.bg;
+  document.getElementById('slideCounter').textContent = `${currentIdx + 1} / ${SLIDES.length}`;
+
+  const qrUrl = document.getElementById('qrUrl').value.trim();
+  const artHtml = s.isQrSlide ? getQrSvg(qrUrl) : s.svg;
+
+  frame.innerHTML = `
+    <div class="slide-header">
+      <div>
+        <span class="badge" style="background:${s.badgeBg};color:#fff;">${s.badge}</span>
+        <h1 class="slide-title">${s.title}</h1>
+        <p class="slide-sub">${s.sub}</p>
+      </div>
+      <div style="background:#fff;padding:10px 18px;border-radius:14px;font-weight:900;color:#1e293b;box-shadow:0 4px 12px rgba(0,0,0,0.06);">
+        БГТУ • Брянск 🇷🇺
+      </div>
+    </div>
+    <div class="slide-body">
+      <div class="art-box">${artHtml}</div>
+      <div class="cards-stack">
+        ${s.cards.map(c => `
+          <div class="phrase-card" style="border-left-color:${c.color}">
+            <div class="phrase-ru">${c.ru}</div>
+            <div class="phrase-en">🇬🇧 ${c.en}</div>
+            <div class="phrase-fr">🇫🇷 ${c.fr}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  fitStage();
+}
+
+function fitStage() {
+  const stage = document.getElementById('stage');
+  const frame = document.getElementById('slideFrame');
+  const scale = Math.min((stage.clientWidth - 40) / 1280, (stage.clientHeight - 40) / 720);
+  frame.style.transform = `scale(${Math.max(0.3, scale)})`;
+}
+
+function nextSlide() { currentIdx = (currentIdx + 1) % SLIDES.length; renderSlide(); }
+function prevSlide() { currentIdx = (currentIdx - 1 + SLIDES.length) % SLIDES.length; renderSlide(); }
+function toggleFull() {
+  if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+  else document.exitFullscreen();
+}
+
+window.addEventListener('resize', fitStage);
+window.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') nextSlide();
+  if (e.key === 'ArrowLeft') prevSlide();
+});
+
+// Конвертация SVG-иллюстрации в PNG Base64 для вставки в реальный PowerPoint
+function svgToPngBase64(svgMarkup, width = 800, height = 600) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    const svgBlob = new Blob([svgMarkup], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(svgBlob);
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      URL.revokeObjectURL(url);
+      resolve(canvas.toDataURL('image/png'));
+    };
+    img.src = url;
+  });
+}
+
+async function exportToPptx() {
+  const btn = document.getElementById('exportBtn');
+  btn.textContent = "⏳ Генерация картинок для PowerPoint...";
+  btn.disabled = true;
+
+  try {
+    const pptx = new PptxGenJS();
+    pptx.layout = 'LAYOUT_WIDE'; // 13.33 x 7.5 дюймов
+
+    for (let i = 0; i < SLIDES.length; i++) {
+      const s = SLIDES[i];
+      const slide = pptx.addSlide();
+      slide.background = { color: "F8FAFC" };
+
+      // Верхняя цветная шапка
+      slide.addShape(pptx.ShapeType.rect, {
+        x: 0, y: 0, w: 13.33, h: 1.35,
+        fill: { color: s.badgeBg.replace('#', '') }
+      });
+
+      slide.addText(s.badge + "  |  БГТУ • Брянск", {
+        x: 0.5, y: 0.12, w: 12, h: 0.35,
+        fontSize: 12, bold: true, color: "FEF08A"
+      });
+
+      slide.addText(s.title, {
+        x: 0.5, y: 0.42, w: 12, h: 0.55,
+        fontSize: 26, bold: true, color: "FFFFFF"
+      });
+
+      slide.addText(s.sub, {
+        x: 0.5, y: 0.92, w: 12, h: 0.35,
+        fontSize: 13, italic: true, color: "E0F2FE"
+      });
+
+      // Левая колонка: Крупная цветная картинка
+      if (!s.isQrSlide && s.svg) {
+        const pngData = await svgToPngBase64(s.svg, 900, 675);
+        slide.addImage({
+          data: pngData,
+          x: 0.45, y: 1.65, w: 6.1, h: 4.6
+        });
+      } else {
+        const qrUrl = document.getElementById('qrUrl').value.trim() || "https://1nitroglicerin1-debug.github.io/bryansk-day/";
+        slide.addShape(pptx.ShapeType.roundRect, {
+          x: 0.6, y: 1.75, w: 5.8, h: 4.5,
+          fill: { color: "FFFFFF" }, line: { color: "0891B2", width: 3 }
+        });
+        slide.addText("ОТСКАНИРУЙТЕ QR-КОД\nСО СМАРТФОНА:\n\n" + qrUrl, {
+          x: 0.8, y: 2.2, w: 5.4, h: 3.5,
+          fontSize: 18, bold: true, align: "center", color: "0F172A"
+        });
+      }
+
+      // Правая колонка: Трехъязычные карточки
+      s.cards.forEach((c, idx) => {
+        const yPos = 1.65 + idx * (s.cards.length === 4 ? 1.32 : 1.72);
+        const cardH = s.cards.length === 4 ? 1.18 : 1.52;
+
+        slide.addShape(pptx.ShapeType.roundRect, {
+          x: 6.8, y: yPos, w: 6.1, h: cardH,
+          fill: { color: "FFFFFF" },
+          line: { color: c.color.replace('#', ''), width: 2.5 }
+        });
+
+        slide.addText(c.ru, {
+          x: 7.0, y: yPos + 0.08, w: 5.7, h: 0.45,
+          fontSize: 16, bold: true, color: "0F172A"
+        });
+
+        slide.addText("EN: " + c.en, {
+          x: 7.0, y: yPos + 0.52, w: 5.7, h: 0.38,
+          fontSize: 12, bold: true, color: "2563EB"
+        });
+
+        slide.addText("FR: " + c.fr, {
+          x: 7.0, y: yPos + 0.86, w: 5.7, h: 0.38,
+          fontSize: 12, italic: true, color: "059669"
+        });
+      });
+    }
+
+    await pptx.writeFile({ fileName: "Moi_Den_v_Bryanske_Illustrated.pptx" });
+  } finally {
+    btn.textContent = "📥 Скачать PowerPoint (.PPTX) с картинками";
+    btn.disabled = false;
+  }
+}
+
+renderSlide();
+</script>
+</body>
+</html>
